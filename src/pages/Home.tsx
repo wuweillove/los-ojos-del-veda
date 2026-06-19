@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { PILLARS, BHV } from "../lib/constants";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [activePill, setActivePill] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -15,7 +17,6 @@ export default function Home() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll(".rev").forEach(el => observer.observe(el));
-    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -25,9 +26,9 @@ export default function Home() {
         <div className="nav-brand">LOS OJOS DEL VEDA</div>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
-          <a href="#filosofia">Veda</a>
+          <a href="#pilares">Pilares</a>
           <a href="#grahas">Grahas</a>
-          <a href="#calcular" className="nav-cta">Calcular Carta</a>
+          <Link to="/calcular" className="nav-cta">Calcular Carta</Link>
         </div>
       </nav>
 
@@ -36,38 +37,32 @@ export default function Home() {
           <p className="lbl" style={{ marginBottom: '1.5rem' }}>ASTROLOGÍA VÉDICA SIDERAL</p>
           <h1>Los Ojos <br/><em>del Veda</em></h1>
           <p className="hero-desc">
-            Jyotiṣa, la ciencia de la luz, es el ojo de los Vedas: el órgano con que la tradición mira el cielo para leer el tiempo y el karma.
+            Jyotiṣa es el "Veda-Chakṣu", el órgano con que la tradición mira el cielo para leer el tiempo y el karma.
           </p>
           <div className="hero-actions">
-            <a href="#calcular" className="btn-primary">Empezar Lectura</a>
-            <a href="#filosofia" className="btn-secondary">Ver Tradición</a>
+            <Link to="/calcular" className="btn-primary">Empezar Lectura</Link>
+            <a href="#pilares" className="btn-secondary">Ver Fundamentos</a>
           </div>
         </div>
         <div className="hero-bg-text">ज्योतिष</div>
       </section>
 
-      <section id="filosofia" className="wrap">
+      <section id="pilares" className="wrap">
         <div className="sec-head rev">
           <div className="sec-n">01</div>
           <div>
-            <p className="lbl">La Ciencia de la Luz</p>
-            <h2 className="sh">Nirāyaṇa: El Zodíaco Sideral</h2>
-            <p className="sint">
-              Donde el calendario tropical sigue las estaciones, el cómputo sideral sigue las estrellas fijas. 
-              Anclado en la posición real de los astros a través del Ayanāṃśa de Lahiri.
-            </p>
+            <p className="lbl">Arquitectura del Destino</p>
+            <h2 className="sh">Los Seis Pilares</h2>
+            <p className="sint">La ciencia de la luz se sostiene sobre seis fundamentos técnicos que permiten decodificar la experiencia humana.</p>
           </div>
         </div>
-        
-        <div className="features-grid rev" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
-          {[
-            { h: 'Karma Siddhānta', p: 'La ley de causa y efecto. El horóscopo es el mapa del Prārabdha karma: la porción del pasado activada para esta vida.' },
-            { h: 'Tri Skandha', p: 'Las tres ramas: Siddhānta (astronomía), Saṃhitā (mundana) y Horā (interpretación de la carta natal).' },
-            { h: 'Vedāṅga', p: 'Jyotiṣa es uno de los seis miembros del Veda, proporcionando la visión necesaria para el ritual y el dharma.' }
-          ].map((f, i) => (
-            <div key={i} className="f-card" style={{ padding: '2.5rem', background: 'var(--bg2)', border: '1px solid var(--bd)' }}>
-              <h3 style={{ fontFamily: 'var(--fd)', fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--g)' }}>{f.h}</h3>
-              <p style={{ color: 'var(--cm)', fontSize: '1.05rem', lineHeight: '1.7' }}>{f.p}</p>
+        <div className="pillar-grid rev">
+          {PILLARS.map((p, i) => (
+            <div key={i} className={`pill ${activePill === i ? 'active' : ''}`} onClick={() => setActivePill(activePill === i ? null : i)}>
+              <p className="pill-q">{p.q}</p>
+              <h3 className="pill-skt">{p.skt}</h3>
+              <p className="pill-es">{p.es}</p>
+              <p className="pill-desc">{p.d}</p>
             </div>
           ))}
         </div>
@@ -78,59 +73,38 @@ export default function Home() {
           <div className="sec-n">02</div>
           <div>
             <p className="lbl">Navagraha</p>
-            <h2 className="sh">Los Agarradores Celestes</h2>
-            <p className="sint">Los nueve planetas que "agarran" la conciencia y ejecutan el destino a través de las casas y signos.</p>
+            <h2 className="sh">Mensajeros Celestes</h2>
           </div>
         </div>
-        
         <div className="grahas-grid rev">
-          {[
-            { s: '☉', n: 'Sūrya', d: 'Sol · El Atman' },
-            { s: '☽', n: 'Candra', d: 'Luna · La Mente' },
-            { s: '♂', n: 'Maṅgala', d: 'Marte · La Acción' },
-            { s: '☿', n: 'Budha', d: 'Mercurio · El Intelecto' },
-            { s: '♃', n: 'Guru', d: 'Júpiter · La Gracia' },
-            { s: '♀', n: 'Śukra', d: 'Venus · El Deseo' },
-            { s: '♄', n: 'Śani', d: 'Saturno · El Karma' },
-            { s: '☊', n: 'Rāhu', d: 'Nodo Norte · Obsesión' },
-            { s: '☋', n: 'Ketu', d: 'Nodo Sur · Liberación' }
-          ].map((g, i) => (
-            <div key={i} className="graha-item">
-              <span className="g-sym">{g.s}</span>
-              <h4>{g.n}</h4>
-              <p>{g.d}</p>
+           <Link to="/grahas/surya" className="graha-item"><span className="g-sym">☉</span><h4>Sūrya</h4><p>El Alma · El Rey</p></Link>
+           <Link to="/grahas/chandra" className="graha-item"><span className="g-sym">☽</span><h4>Candra</h4><p>La Mente · La Madre</p></Link>
+           <Link to="/grahas/mangala" className="graha-item"><span className="g-sym">♂</span><h4>Maṅgala</h4><p>La Acción · El Guerrero</p></Link>
+           <Link to="/grahas/guru" className="graha-item"><span className="g-sym">♃</span><h4>Guru</h4><p>La Gracia · El Maestro</p></Link>
+        </div>
+      </section>
+
+      <section id="bhavas" className="wrap">
+        <div className="sec-head rev">
+          <div className="sec-n">03</div>
+          <div>
+            <p className="lbl">Bhāvas</p>
+            <h2 className="sh">Las Doce Casas</h2>
+            <p className="sint">Las áreas de la experiencia donde el karma se manifiesta físicamente.</p>
+          </div>
+        </div>
+        <div className="pillar-grid rev">
+          {BHV.map((b, i) => (
+            <div key={i} className="pill">
+               <h3 className="pill-skt">Casa {b.n} · {b.skt}</h3>
+               <p className="pill-es">{b.es}</p>
+               <p style={{fontSize: '0.9rem', color: 'var(--cm)', marginTop: '0.5rem'}}>{b.d}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="calcular" className="wrap">
-        <div className="sec-head rev">
-          <div className="sec-n">03</div>
-          <div>
-            <p className="lbl">Cálculo Natal</p>
-            <h2 className="sh">Lagna Kuṇḍalī</h2>
-            <p className="sint">Genera tu carta astral védica. El motor de cálculo utiliza el Ayanāṃśa de Lahiri y el sistema de casas Signo-Casa (Whole Sign).</p>
-          </div>
-        </div>
-        
-        <div className="calc-box rev">
-          <div className="calc-title">Datos de Nacimiento</div>
-          <div className="calc-form" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
-            <div className="cf"><label>Fecha</label><input type="date" /></div>
-            <div className="cf"><label>Hora</label><input type="time" /></div>
-            <div className="cf"><label>Ciudad</label><input type="text" placeholder="Ciudad de nacimiento..." /></div>
-          </div>
-          <button className="btn-primary" style={{ marginTop: '2rem', width: '100%', border: 'none', cursor: 'pointer' }}>Calcular Carta ▸</button>
-          <p style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: 'var(--gd)', borderLeft: '2px solid var(--bd)', paddingLeft: '1rem' }}>
-            Nota: El cálculo se realiza en el zodíaco sideral. Las posiciones diferirán de la astrología occidental (tropical).
-          </p>
-        </div>
-      </section>
-
-      <footer>
-        <p>© 2026 LOS OJOS DEL VEDA · Astrología Védica</p>
-      </footer>
+      <footer><p>© 2026 LOS OJOS DEL VEDA</p></footer>
     </div>
   );
 }

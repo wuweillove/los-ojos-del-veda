@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import "./styles/main.css";
+import Calculator from "./pages/Calculator";
+import GrahaSheet from "./pages/GrahaSheet";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/calcular" element={<div className="wrap"><h1>Módulo de Cálculo</h1><p>Próximamente modularizado...</p></div>} />
+      <Route path="/calcular" element={<Calculator />} />
+      <Route path="/grahas/:slug" element={<GrahaSheet />} />
     </Routes>
   );
 }

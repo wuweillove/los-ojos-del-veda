@@ -1,0 +1,54 @@
+{
+  "goal": "Complete Jyotish app to JH-level precision. Tier 1 first: current dasha, Pratyantara, Upagrahas, Special Lagnas, 20 verified Yogas, Gochara Vedha+Tara. NO colors changed, NO full rewrites, NO gold. Deploy only after batch verified.",
+  "started": "2026-05-09",
+  "budget": "20 iterations max",
+  "verification": {
+    "birth_data": {
+      "date": "1992-09-24",
+      "time": "15:57",
+      "lat": 9.32,
+      "lng": -70.6,
+      "utc": -4
+    },
+    "expected_today_mahadasha": "Maṅgala",
+    "expected_yogas": [
+      "Sasa Yoga",
+      "Malavya Yoga"
+    ],
+    "note_moon": "Moon in Siṃha H8 Pūrva Phalgunī (Venus lord) — Venus dasha 1992-2009, then Sun/Moon/Mars. Mars dasha started May 2025. Confirmed correct by dasha arithmetic."
+  },
+  "tier1": {
+    "current_dasha_indicator": "done - shows Maha+Antar+Prat with live ACTUAL badge and progress bar",
+    "pratyantara_dasha": "done - 3rd level expandable in UI",
+    "upagrahas_gulika_mandi": "done - Gulika (Makara H1) Mandi (Kanya H9)",
+    "special_lagnas": "done - HL/BL/GL computed from sunrise",
+    "yogas_verified": "done - Malavya(Venus), Sasa(Saturn), Sunapha, Ubhayachari, Budha-Aditya, Saraswati, Amala, Kahala + Neecha Bhanga/Viparita/Parivartana/Chandal/Adhi/Dhana logic added",
+    "sasa_yoga": "CONFIRMED: Saturn own sign Makara H1 (kendra) ✓",
+    "malavya_yoga": "CONFIRMED: Venus own sign Tula H10 (kendra) ✓",
+    "gochara_tara": "done - Tara Bala column in transits table from natal Moon nak",
+    "dasha_years_fix": "CRITICAL BUG FIXED: was [6,10,7,18,16,20,19,7] (wrong+8vals) → [7,20,6,10,7,18,16,19,17] ✓",
+    "own_lords_fix": "FIXED: OWN_LORDS was completely wrong, now correct"
+  },
+  "tier2": [
+    "Ashtakavarga full display",
+    "Shadbala full 6 components (Hora/Vara/Chara bala)",
+    "Yogini dasha",
+    "Sarvatobhadra chakra",
+    "Muhurta calculator",
+    "Detailed Nakshatra descriptions"
+  ],
+  "status": "continue",
+  "last_update": "2026-05-16T04:30:00Z",
+  "nightly_audit_confirmed": {
+    "date": "2026-05-16",
+    "confirmed_in_App_tsx": [
+      "Arudha Padas (A1-A12) — types defined, rendered in NorthChart (line 600, 668-669)",
+      "BhriguBindu — type defined, shown as 'BB' in NorthChart (lines 601, 669)",
+      "localStorage save/load — .saved-panel CSS + component in App.tsx (lines 235-244)",
+      "PDF export — @media print CSS + print-header + print-only (lines 366-475)",
+      "Two-mode layout — Calculadora | Bhāvas nav (confirmed in App.tsx)"
+    ],
+    "tier2_status": "NOT YET STARTED — Ashtakavarga display, Shadbala full 6 components, Yogini dasha, Sarvatobhadra, Muhurta, Nakshatra details all pending",
+    "note": "Tier 1 features confirmed complete by code inspection. Tier 2 still pending."
+  }
+}

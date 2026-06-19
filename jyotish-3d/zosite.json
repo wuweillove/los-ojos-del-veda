@@ -1,0 +1,15 @@
+{
+  "name": "jyotish-3d",
+  "local_port": 50882,
+  "entrypoint": "bun run dev",
+  "publish": {
+    "label": "jyotish-3d",
+    "type": "http",
+    "entrypoint": "bun run prod",
+    "published_port": 50653,
+    "env": {
+      "NODE_ENV": "production",
+      "ZO_CLIENT_IDENTITY_TOKEN": "none"
+    }
+  }
+}

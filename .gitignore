@@ -100,3 +100,5 @@ dist
 
 # Project specific
 # NOTE: Removing any rules that might ignore ephe or jyotish-3d
+node_modules/
+.bun/

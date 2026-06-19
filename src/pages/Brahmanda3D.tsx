@@ -5,8 +5,8 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Component, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import * as THREE from "three";
-import { useChartStore } from "./store/chartStore";
-import type { ApiResponse, ChartData, Planet, TransitPlanet, SavedChart, BirthInput } from "./store/chartStore";
+import { useChartStore } from "../store/chartStore";
+import type { ApiResponse, ChartData, Planet, TransitPlanet, SavedChart, BirthInput } from "../store/chartStore";
 import {
   PLANET_COLORS,
   PLANET_EMISSIVE,
@@ -16,7 +16,7 @@ import {
   RASI_NAMES,
   ELEMENT_COLORS,
   rasiElement,
-} from "./lib/chart3d";
+} from "../lib/chart3d";
 
 class SceneErrorBoundary extends Component<{ children: ReactNode }, { error: string | null }> {
   state = { error: null };

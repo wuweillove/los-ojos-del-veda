@@ -18,7 +18,11 @@
     "tailwind-merge": "^2.5.4",
     "sweph": "^2.10.3-5",
     "hono": "^4.12.18",
-    "@hono/node-server": "^1.13.5"
+    "@hono/node-server": "^1.13.5",
+    "three": "^0.170.0",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/drei": "^10.0.0",
+    "@react-three/postprocessing": "^2.16.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

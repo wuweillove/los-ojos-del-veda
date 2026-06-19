@@ -150,4 +150,11 @@ h2.sh { font-family: var(--fd); font-size: clamp(2rem, 5vw, 3.4rem); font-weight
   display: inline-block;
 }
 
+/* Calculator Styles */
+.calc-box { background: var(--bg3); border: 1px solid var(--bd); padding: 2.5rem; margin-top: 2rem; }
+.calc-title { font-family: var(--fd); font-size: 1.6rem; color: var(--c); margin-bottom: 1.75rem; }
+.cf { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.cf label { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gd); }
+.cf input { background: var(--bg); border: 1px solid var(--bd); padding: 0.75rem; color: var(--c); font-family: var(--fb); }
+
 footer { border-top: 1px solid var(--bd); padding: 4rem 2rem; text-align: center; color: var(--cd); font-size: 0.88rem; }

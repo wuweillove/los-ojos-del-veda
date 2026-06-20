@@ -5,7 +5,7 @@
   "functions": {
     "api/index.ts": {
       "runtime": "@vercel/node@5.1.10",
-      "includeFiles": "public/ephe/**"
+      "includeFiles": "{public/ephe/**,node_modules/sweph/prebuilds/linux-x64/sweph.node}"
     }
   },
   "rewrites": [

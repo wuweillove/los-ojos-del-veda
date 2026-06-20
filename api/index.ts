@@ -78,7 +78,10 @@ app.get("/api/search-city", async (c) => {
   const q = c.req.query("q");
   if (!q || q.length < 3) return c.json([]);
   try {
-    const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=8`);
+    const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=8&addressdetails=1`, {
+      headers: { "User-Agent": "LloveraStudioAstrology/1.0 (studio@sebastianllovera.com)" },
+      signal: AbortSignal.timeout(5000)
+    });
     const data = await r.json();
     return c.json(data.map((d: any) => ({
       name: d.display_name.split(",").slice(0, 2).join(","),
@@ -91,7 +94,10 @@ app.get("/api/timezone", async (c) => {
   const lat = +(c.req.query("lat") ?? 0);
   const lng = +(c.req.query("lng") ?? 0);
   try {
-    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&zoom=6`);
+    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&zoom=6`, {
+      headers: { "User-Agent": "LloveraStudioAstrology/1.0 (studio@sebastianllovera.com)" },
+      signal: AbortSignal.timeout(5000)
+    });
     const d = await r.json();
     const country = d.address?.country_code?.toUpperCase();
     const tzMap: Record<string,[number,string]> = {

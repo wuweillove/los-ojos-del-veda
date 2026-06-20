@@ -1,5 +1,6 @@
 import { createRequire } from "module";
 import path from "path";
+import fs from "fs";
 const require = createRequire(import.meta.url);
 const sweph = require("sweph");
 
@@ -17,7 +18,20 @@ const SEFLG_SPEED = SE.SEFLG_SPEED ?? 256;
 const SEFLG_SIDEREAL = SE.SEFLG_SIDEREAL ?? 65536;
 
 const rev = (x: number) => ((x % 360) + 360) % 360;
-const EPHE_PATH = path.join(process.cwd(), "public/ephe");
+function resolveEphePath(): string {
+  const candidates = [
+    path.join(process.cwd(), "public/ephe"),
+    path.join(process.cwd(), "ephe"),
+    path.join(process.cwd(), "api/public/ephe"),
+    "/var/task/public/ephe",
+    "/var/task/ephe",
+  ];
+  for (const candidate of candidates) {
+    try { if (fs.existsSync(candidate)) return candidate; } catch {}
+  }
+  return candidates[0];
+}
+const EPHE_PATH = resolveEphePath();
 let initialized = false;
 
 function initSweph() {

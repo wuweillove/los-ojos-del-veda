@@ -5,20 +5,20 @@
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/patch-sweph.cjs",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.0.0",
+    "@tanstack/react-router": "^1.98.0",
+    "@tanstack/start": "^0.0.1-beta.236",
+    "vinxi": "^0.5.1",
     "lucide-react": "^0.460.0",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.5.4",
     "sweph": "^2.10.3-5",
-    "hono": "^4.12.18",
-    "@hono/node-server": "^1.13.5",
     "three": "^0.170.0",
     "three-stdlib": "^2.36.1",
     "@react-three/fiber": "^9.0.0",

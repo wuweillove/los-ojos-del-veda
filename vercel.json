@@ -5,11 +5,17 @@
   "functions": {
     "api/index.ts": {
       "runtime": "@vercel/node@5.1.10",
-      "includeFiles": "{public/ephe/**,node_modules/sweph/prebuilds/linux-x64/sweph.node}"
+      "includeFiles": "{public/ephe/**,node_modules/sweph/**,node_modules/node-gyp-build/**}"
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.ts" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
   ]
 }
